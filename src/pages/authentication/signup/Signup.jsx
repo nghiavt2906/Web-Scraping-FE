@@ -1,13 +1,23 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import { Form, Button, Card, Alert } from "react-bootstrap";
 
+import { signupRequest } from "../../../store/actions/user";
+
 function Signup() {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.user);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  if (user.authenticated) {
+    return <Navigate to="/" />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -20,13 +30,12 @@ function Signup() {
     }
 
     if (password.length < 6) {
-      setError("Length of password must contain at least 6 characters!");
+      setError("Length of password must be at least 6 characters!");
       return;
     }
 
     try {
-      // post signup
-      navigate("/login");
+      dispatch(signupRequest(data, navigate));
     } catch (err) {
       console.log(err);
     }
@@ -74,7 +83,7 @@ function Signup() {
             />
           </Form.Group>
 
-          <div class="row justify-content-center">
+          <div className="row justify-content-center">
             <Button
               variant="primary"
               type="submit"

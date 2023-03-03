@@ -1,17 +1,26 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Alert from "react-bootstrap/Alert";
 
+import { loginRequest } from "../../../store/actions/user";
+
 const Login = () => {
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
   const [error, setError] = useState("");
 
-  const navigate = useNavigate();
+  if (user.authenticated) {
+    return <Navigate to="/" />;
+  }
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,8 +33,7 @@ const Login = () => {
     }
 
     try {
-      // post login
-      navigate("/", { replace: true });
+      dispatch(loginRequest(data));
     } catch (err) {
       console.log(err);
       setError(err.response.data);
