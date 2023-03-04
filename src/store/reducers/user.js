@@ -8,7 +8,7 @@ const INITIAL_STATE = {
 
 const user = (state = INITIAL_STATE, action) => {
   const { type, payload } = action;
-  console.log(payload);
+
   switch (type) {
     case types.LOGIN_SUCCESS:
       return {
@@ -21,6 +21,10 @@ const user = (state = INITIAL_STATE, action) => {
         ...state,
         authenticated: true,
         accessToken: payload.accessToken,
+      };
+    case types.LOGOUT_SUCCESS:
+      return {
+        ...INITIAL_STATE,
       };
     default:
       return state;
