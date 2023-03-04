@@ -1,10 +1,22 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App'
-import './index.css'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { Provider } from "react-redux";
 
-ReactDOM.createRoot(document.getElementById('root')).render(
+import { ToastContainer } from "react-toastify";
+
+import App from "./App";
+
+import store from "./store";
+
+import "bootstrap/scss/bootstrap.scss";
+import "react-toastify/scss/main.scss";
+import "./index.scss";
+
+ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <Provider store={store}>
+      <App />
+      <ToastContainer />
+    </Provider>
+  </React.StrictMode>
+);
