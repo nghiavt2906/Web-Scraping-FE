@@ -12,16 +12,11 @@ const user = (state = INITIAL_STATE, action) => {
 
   switch (type) {
     case types.LOGIN_SUCCESS:
+    case types.REFRESH_TOKEN:
       return {
         ...state,
         ...payload,
         authenticated: true,
-      };
-    case types.REFRESH_TOKEN:
-      return {
-        ...state,
-        authenticated: true,
-        accessToken: payload.accessToken,
       };
     case types.LOGOUT_SUCCESS:
       return {

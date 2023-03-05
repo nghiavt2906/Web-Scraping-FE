@@ -1,6 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import { LinkContainer } from "react-router-bootstrap";
 
 import {
   Navbar,
@@ -27,9 +29,15 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
-            <Nav.Link href="/uploaded-kewords">Uploaded Keywords</Nav.Link>
-            <Nav.Link href="/search-report">Search Reports</Nav.Link>
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/uploaded-kewords">
+              <Nav.Link>Uploaded Keywords</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/search-report">
+              <Nav.Link>Search Reports</Nav.Link>
+            </LinkContainer>
           </Nav>
           <Nav>
             <DropdownButton
