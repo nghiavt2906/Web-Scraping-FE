@@ -23,19 +23,26 @@ const toaster = {
     }
   },
 
-  promiseShow: async (callback, messages) => {
+  promiseShow: async (
+    callback,
+    {
+      pending = "Please wait...",
+      success = "Done",
+      error = "Something went wrong",
+    }
+  ) => {
     return await toast.promise(
       callback(),
       {
-        pending: "Please wait...",
+        pending: pending,
         success: {
           render() {
-            return messages.success;
+            return success;
           },
         },
         error: {
           render({ data }) {
-            return data.response.data;
+            return data.response.data ? data.response.data : error;
           },
         },
       },

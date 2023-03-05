@@ -17,7 +17,6 @@ const NavBar = () => {
   const { username } = useSelector((state) => state.user);
 
   const handleLogout = () => {
-    console.log("test");
     dispatch(logoutRequest(navigate));
   };
 
@@ -29,6 +28,8 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/uploaded-kewords">Uploaded Keywords</Nav.Link>
+            <Nav.Link href="/search-report">Search Reports</Nav.Link>
           </Nav>
           <Nav>
             <DropdownButton

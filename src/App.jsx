@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Login from "./pages/authentication/login/Login";
 import Signup from "./pages/authentication/signup/Signup";
 import Home from "./pages/home/Home";
+
 import CheckAuth from "./components/CheckAuth";
 
 function App() {

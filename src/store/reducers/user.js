@@ -4,6 +4,7 @@ const INITIAL_STATE = {
   authenticated: false,
   username: "",
   accessToken: "",
+  submittedReport: null,
 };
 
 const user = (state = INITIAL_STATE, action) => {
@@ -25,6 +26,11 @@ const user = (state = INITIAL_STATE, action) => {
     case types.LOGOUT_SUCCESS:
       return {
         ...INITIAL_STATE,
+      };
+    case types.FILE_SUBMIT_SUCCESS:
+      return {
+        ...state,
+        submittedReport: payload,
       };
     default:
       return state;
