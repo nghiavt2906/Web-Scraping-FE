@@ -41,7 +41,7 @@ const CheckAuth = ({ isProtectedRoute }) => {
 
   return (
     <>
-      <NavBar />
+      {isProtectedRoute && <NavBar />}
       <Outlet />
     </>
   );

@@ -34,12 +34,16 @@ const Home = () => {
 
   useEffect(() => {
     const updateInterval = setInterval(async () => {
+      if (!submittedReport) return;
+
       try {
         const response = await axiosPrivate.get(
           `/reports/${submittedReport.id}/search-results`
         );
         setSearchResults(response.data);
-      } catch (error) {}
+      } catch (error) {
+        console.log(error);
+      }
     }, 1000);
 
     return () => clearInterval(updateInterval);
@@ -61,8 +65,8 @@ const Home = () => {
     dispatch(uploadFileRequest(file));
   };
 
-  const handleClickListItem = () => {
-    navigate("/test");
+  const handleClickListItem = (id) => {
+    navigate(`/search-results/${id}`);
   };
 
   return (
@@ -128,7 +132,7 @@ const Home = () => {
                       as="li"
                       className="d-flex justify-content-between align-items-start"
                       disabled={searchResult.status === "PROCESSING"}
-                      onClick={handleClickListItem}
+                      onClick={() => handleClickListItem(searchResult.id)}
                     >
                       <div className="ms-2 me-auto">{searchResult.keyword}</div>
                       <Badge bg={getBadgeClass(searchResult.status)}>

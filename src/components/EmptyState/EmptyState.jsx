@@ -13,9 +13,7 @@ const EmptyState = () => {
         alt="No results found"
         style={{ height: "300px", marginBottom: "2rem" }}
       />
-      <span className="text-secondary fs-4 fw-bold text-secondary">
-        No results found
-      </span>
+      <span className="text-secondary fs-4 fw-bold">No results found</span>
     </div>
   );
 };
