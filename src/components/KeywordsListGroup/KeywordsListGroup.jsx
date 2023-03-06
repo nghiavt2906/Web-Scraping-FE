@@ -14,7 +14,7 @@ const KeywordsListGroup = ({ searchResults, searchText }) => {
   };
 
   let filteredSearchResults = searchResults;
-  if (searchText.length > 0) {
+  if (searchText && searchText.length > 0) {
     filteredSearchResults = searchResults.filter((searchResult) =>
       searchResult.keyword.toLowerCase().match(searchText.toLowerCase())
     );
