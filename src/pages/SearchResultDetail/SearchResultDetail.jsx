@@ -6,10 +6,12 @@ import { RxChevronLeft } from "react-icons/rx";
 
 import { axiosPrivate } from "../../config/axios";
 
+import Skeleton from "react-loading-skeleton";
+
 const SearchResultDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [searchResult, setSearchResult] = useState({});
+  const [searchResult, setSearchResult] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -32,22 +34,41 @@ const SearchResultDetail = () => {
             Search result information
           </Card.Header>
           <Card.Body>
-            <h4>{searchResult.keyword}</h4>
-            <span>
+            <h4>
+              {searchResult ? searchResult.keyword : <Skeleton width={200} />}
+            </h4>
+
+            <span style={{ display: "block" }}>
               <b>Total adwords advertisers: </b>
-              {searchResult.totalAdwordsAdvertisers}
-            </span>{" "}
-            <br />
-            <span>
-              <b>Total links: </b> {searchResult.totalLinks}
-            </span>{" "}
-            <br />
-            <span>
-              <b>Total search results: </b> {searchResult.totalSearchResults}
-            </span>{" "}
-            <br />
-            <b>HTML Code: </b>
-            <textarea className="html-text" value={searchResult.htmlCode} />
+              {searchResult ? (
+                searchResult.totalAdwordsAdvertisers
+              ) : (
+                <Skeleton width={50} />
+              )}
+            </span>
+
+            <span style={{ display: "block" }}>
+              <b>Total links: </b>{" "}
+              {searchResult ? searchResult.totalLinks : <Skeleton width={50} />}
+            </span>
+
+            <span style={{ display: "block" }}>
+              <b>Total search results: </b>{" "}
+              {searchResult ? (
+                searchResult.totalSearchResults
+              ) : (
+                <Skeleton width={50} />
+              )}
+            </span>
+
+            <span style={{ display: "block" }}>
+              <b>HTML Code: </b>
+              {searchResult ? (
+                <textarea className="html-text" value={searchResult.htmlCode} />
+              ) : (
+                <Skeleton className="html-text" />
+              )}
+            </span>
           </Card.Body>
         </Card>
       </Accordion>

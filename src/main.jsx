@@ -10,6 +10,8 @@ import store from "./store";
 
 import "bootstrap/scss/bootstrap.scss";
 import "react-toastify/scss/main.scss";
+import "react-loading-skeleton/dist/skeleton.css";
+
 import "./index.scss";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
