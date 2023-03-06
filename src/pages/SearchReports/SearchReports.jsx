@@ -58,7 +58,7 @@ const SearchReports = () => {
             <Accordion>
               {reports.map((report) => (
                 <Accordion.Item key={report.id} eventKey={report.id}>
-                  <Accordion.Header>{report.name}</Accordion.Header>
+                  <Accordion.Header>{`${report.name}.csv`}</Accordion.Header>
                   <Accordion.Body>
                     <KeywordsListGroup
                       searchResults={report.keywords}
