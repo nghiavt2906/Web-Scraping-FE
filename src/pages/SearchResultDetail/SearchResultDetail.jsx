@@ -64,7 +64,10 @@ const SearchResultDetail = () => {
             <span style={{ display: "block" }}>
               <b>HTML Code: </b>
               {searchResult ? (
-                <textarea className="html-text" value={searchResult.htmlCode} />
+                <textarea
+                  className="html-text bg-dark"
+                  value={searchResult.htmlCode}
+                />
               ) : (
                 <Skeleton className="html-text" />
               )}

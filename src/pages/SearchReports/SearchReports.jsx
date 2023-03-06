@@ -75,7 +75,7 @@ const SearchReports = () => {
             </Accordion>
           ) : isLoading ? (
             <Accordion>
-              {[...Array(10).keys()].map((key) => (
+              {[...Array(7).keys()].map((key) => (
                 <Skeleton key={key} width={"100%"} height={"3.4rem"} />
               ))}
             </Accordion>

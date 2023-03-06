@@ -46,15 +46,14 @@ function Signup() {
       style={{
         width: "38rem",
         color: "white",
-        margin: "4rem auto",
-        backgroundColor: "#242424",
+        margin: "5rem auto",
       }}
+      className="text-dark"
     >
+      <Card.Header style={{ textAlign: "center" }}>
+        <h4>Create a new account</h4>
+      </Card.Header>
       <Card.Body>
-        <Card.Title style={{ textAlign: "center" }}>
-          Create a new account
-        </Card.Title>
-
         {error.length > 0 ? (
           <Alert variant="danger" onClose={() => setError("")} dismissible>
             <Alert.Heading>please check again.</Alert.Heading>
@@ -91,6 +90,13 @@ function Signup() {
             >
               Sign up
             </Button>
+
+            <span style={{ textAlign: "center", marginTop: "1rem" }}>
+              Already have an accout?{" "}
+              <a href="/login" style={{ textDecoration: "none" }}>
+                Go to login
+              </a>
+            </span>
           </div>
         </Form>
       </Card.Body>
