@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
+
+import { Spinner } from "react-bootstrap";
 
 import NavBar from "../NavBar/NavBar";
 
@@ -13,11 +15,14 @@ const CheckAuth = ({ isProtectedRoute }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const [isLoading, setIsLoading] = useState(true);
 
   const refreshToken = useRefreshToken();
   configureAxiosPrivate(user.accessToken, refreshToken);
 
   useEffect(() => {
+    let isMounted = true;
+
     const tryRefreshToken = async () => {
       try {
         const response = await axiosPrivate.get("/auth/refresh");
@@ -31,18 +36,26 @@ const CheckAuth = ({ isProtectedRoute }) => {
         if (isProtectedRoute && error.response.status === 401) {
           navigate("/login", { replace: true });
         }
+      } finally {
+        isMounted && setIsLoading(false);
       }
     };
 
     if (!user.authenticated) {
       tryRefreshToken();
     }
+
+    return () => (isMounted = false);
   }, []);
 
   return (
     <>
-      {isProtectedRoute && <NavBar />}
-      <Outlet />
+      {!isLoading && (
+        <>
+          {isProtectedRoute && <NavBar />}
+          <Outlet />
+        </>
+      )}
     </>
   );
 };
