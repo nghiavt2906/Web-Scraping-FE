@@ -1,27 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  Accordion,
-  Badge,
-  Button,
-  Card,
-  Container,
-  Form,
-  ListGroup,
-  ProgressBar,
-} from "react-bootstrap";
+import { Button, Card, Container, Form, ProgressBar } from "react-bootstrap";
 
 import { axiosPrivate } from "../../config/axios";
 
 import EmptyState from "../../components/EmptyState/EmptyState";
+import KeywordsListGroup from "../../components/KeywordsListGroup/KeywordsListGroup";
 
 import { uploadFileRequest } from "../../store/actions/report";
-import getBadgeClass from "../../utils/getBadgeClass";
-import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const { submittedReport } = useSelector((state) => state.user);
 
@@ -65,10 +54,6 @@ const Home = () => {
     dispatch(uploadFileRequest(file));
   };
 
-  const handleClickListItem = (id) => {
-    navigate(`/search-results/${id}`);
-  };
-
   return (
     <>
       <Container className="mt-3 px-3 py-3">
@@ -99,54 +84,29 @@ const Home = () => {
           </div>
         </Form>
 
-        <Accordion>
-          <Card>
-            <Card.Header className="text-dark fw-semibold">
-              <div className="d-flex align-items-center justify-content-between">
-                Processing Keywords
-                <div className="d-flex align-items-center ml-3">
-                  {successResults}/{searchResults.length}
-                  <ProgressBar
-                    animated
-                    variant="success"
-                    now={(successResults * 100) / searchResults.length}
-                    style={{ width: "20rem", marginLeft: "0.5rem" }}
-                  />
-                </div>
+        <Card>
+          <Card.Header className="text-dark fw-semibold">
+            <div className="d-flex align-items-center justify-content-between">
+              Processing Keywords
+              <div className="d-flex align-items-center ml-3">
+                {successResults}/{searchResults.length}
+                <ProgressBar
+                  animated
+                  variant="success"
+                  now={(successResults * 100) / searchResults.length}
+                  style={{ width: "20rem", marginLeft: "0.5rem" }}
+                />
               </div>
-            </Card.Header>
-            <Card.Body style={{ backgroundColor: "#F9F9FB", height: "500px" }}>
-              {searchResults.length > 0 ? (
-                <ListGroup
-                  as="ol"
-                  numbered
-                  style={{
-                    overflowY: "auto",
-                    maxHeight: "450px",
-                  }}
-                >
-                  {searchResults.map((searchResult) => (
-                    <ListGroup.Item
-                      key={searchResult.id}
-                      action
-                      as="li"
-                      className="d-flex justify-content-between align-items-start"
-                      disabled={searchResult.status === "PROCESSING"}
-                      onClick={() => handleClickListItem(searchResult.id)}
-                    >
-                      <div className="ms-2 me-auto">{searchResult.keyword}</div>
-                      <Badge bg={getBadgeClass(searchResult.status)}>
-                        {searchResult.status}
-                      </Badge>
-                    </ListGroup.Item>
-                  ))}
-                </ListGroup>
-              ) : (
-                <EmptyState />
-              )}
-            </Card.Body>
-          </Card>
-        </Accordion>
+            </div>
+          </Card.Header>
+          <Card.Body style={{ backgroundColor: "#F9F9FB", height: "500px" }}>
+            {searchResults.length > 0 ? (
+              <KeywordsListGroup searchResults={searchResults} />
+            ) : (
+              <EmptyState />
+            )}
+          </Card.Body>
+        </Card>
       </Container>
     </>
   );

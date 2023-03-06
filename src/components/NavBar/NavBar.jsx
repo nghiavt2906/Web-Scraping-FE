@@ -32,10 +32,7 @@ const NavBar = () => {
             <LinkContainer to="/">
               <Nav.Link>Home</Nav.Link>
             </LinkContainer>
-            <LinkContainer to="/uploaded-kewords">
-              <Nav.Link>Uploaded Keywords</Nav.Link>
-            </LinkContainer>
-            <LinkContainer to="/search-report">
+            <LinkContainer to="/search-reports">
               <Nav.Link>Search Reports</Nav.Link>
             </LinkContainer>
           </Nav>
