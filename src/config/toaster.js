@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
 
+import TOAST_TYPES from "../constants/toast_types";
+
 const defaultOptions = {
   position: "top-right",
   autoClose: 3000,
@@ -14,8 +16,11 @@ const defaultOptions = {
 const toaster = {
   show: (message, type) => {
     switch (type) {
-      case "SUCCESS":
+      case TOAST_TYPES.SUCCESS:
         toast.success(message, defaultOptions);
+        break;
+      case TOAST_TYPES.ERROR:
+        toast.error(message, defaultOptions);
         break;
       default:
         toast(message, defaultOptions);

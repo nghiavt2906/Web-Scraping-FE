@@ -9,6 +9,11 @@ import KeywordsListGroup from "../../components/KeywordsListGroup/KeywordsListGr
 
 import { uploadFileRequest } from "../../store/actions/report";
 
+import toaster from "../../config/toaster";
+
+import SEARCH_STATUS from "../../constants/search_status";
+import TOAST_TYPES from "../../constants/toast_types";
+
 const Home = () => {
   const dispatch = useDispatch();
 
@@ -18,7 +23,7 @@ const Home = () => {
   const [searchResults, setSearchResults] = useState([]);
 
   const successResults = searchResults.filter(
-    (searchResult) => searchResult.status === "SUCCESS"
+    (searchResult) => searchResult.status === SEARCH_STATUS.SUCCESS
   ).length;
 
   useEffect(() => {
@@ -48,6 +53,12 @@ const Home = () => {
     e.preventDefault();
 
     if (!file) {
+      toaster.show("CSV file is required!", TOAST_TYPES.ERROR);
+      return;
+    }
+
+    if (file.name.split(".").pop() !== "csv") {
+      toaster.show("File format must be CSV!", TOAST_TYPES.ERROR);
       return;
     }
 
