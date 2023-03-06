@@ -1,5 +1,7 @@
 import { toast } from "react-toastify";
 
+import TOAST_TYPES from "../constants/toast_types";
+
 const defaultOptions = {
   position: "top-right",
   autoClose: 3000,
@@ -14,8 +16,11 @@ const defaultOptions = {
 const toaster = {
   show: (message, type) => {
     switch (type) {
-      case "SUCCESS":
+      case TOAST_TYPES.SUCCESS:
         toast.success(message, defaultOptions);
+        break;
+      case TOAST_TYPES.ERROR:
+        toast.error(message, defaultOptions);
         break;
       default:
         toast(message, defaultOptions);
@@ -23,19 +28,26 @@ const toaster = {
     }
   },
 
-  promiseShow: async (callback, messages) => {
+  promiseShow: async (
+    callback,
+    {
+      pending = "Please wait...",
+      success = "Done",
+      error = "Something went wrong",
+    }
+  ) => {
     return await toast.promise(
       callback(),
       {
-        pending: "Please wait...",
+        pending: pending,
         success: {
           render() {
-            return messages.success;
+            return success;
           },
         },
         error: {
           render({ data }) {
-            return data.response.data;
+            return data.response.data ? data.response.data : error;
           },
         },
       },

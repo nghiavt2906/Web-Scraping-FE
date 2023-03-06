@@ -1,6 +1,8 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+import { LinkContainer } from "react-router-bootstrap";
 
 import {
   Navbar,
@@ -17,7 +19,6 @@ const NavBar = () => {
   const { username } = useSelector((state) => state.user);
 
   const handleLogout = () => {
-    console.log("test");
     dispatch(logoutRequest(navigate));
   };
 
@@ -28,7 +29,12 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">Home</Nav.Link>
+            <LinkContainer to="/">
+              <Nav.Link>Home</Nav.Link>
+            </LinkContainer>
+            <LinkContainer to="/search-reports">
+              <Nav.Link>Search Reports</Nav.Link>
+            </LinkContainer>
           </Nav>
           <Nav>
             <DropdownButton

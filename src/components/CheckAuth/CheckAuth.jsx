@@ -1,17 +1,24 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
-import { axiosPrivate } from "../config/axios";
 
-import * as types from "../store/action_types/user";
+import NavBar from "../NavBar/NavBar";
+
+import { axiosPrivate, configureAxiosPrivate } from "../../config/axios";
+import useRefreshToken from "../../hooks/useRefreshToken";
+
+import * as types from "../../store/action_types/user";
 
 const CheckAuth = ({ isProtectedRoute }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
 
+  const refreshToken = useRefreshToken();
+  configureAxiosPrivate(user.accessToken, refreshToken);
+
   useEffect(() => {
-    const refreshToken = async () => {
+    const tryRefreshToken = async () => {
       try {
         const response = await axiosPrivate.get("/auth/refresh");
         dispatch({ type: types.REFRESH_TOKEN, payload: response.data });
@@ -28,11 +35,16 @@ const CheckAuth = ({ isProtectedRoute }) => {
     };
 
     if (!user.authenticated) {
-      refreshToken();
+      tryRefreshToken();
     }
   }, []);
 
-  return <Outlet />;
+  return (
+    <>
+      {isProtectedRoute && <NavBar />}
+      <Outlet />
+    </>
+  );
 };
 
 export default CheckAuth;
