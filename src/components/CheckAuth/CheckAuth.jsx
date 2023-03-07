@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Outlet, useNavigate } from "react-router-dom";
 
-import { Spinner } from "react-bootstrap";
-
 import NavBar from "../NavBar/NavBar";
 
 import { axiosPrivate, configureAxiosPrivate } from "../../config/axios";
