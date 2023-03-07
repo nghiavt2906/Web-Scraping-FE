@@ -47,11 +47,13 @@ const Login = () => {
           width: "38rem",
           color: "white",
           margin: "5rem auto",
-          backgroundColor: "#242424",
         }}
+        className="text-dark"
       >
+        <Card.Header style={{ textAlign: "center" }}>
+          <h4>Login</h4>
+        </Card.Header>
         <Card.Body>
-          <Card.Title style={{ textAlign: "center" }}>Login</Card.Title>
           {error.length > 0 ? (
             <Alert variant="danger" onClose={() => setError("")} dismissible>
               <Alert.Heading>please check again.</Alert.Heading>
@@ -87,6 +89,7 @@ const Login = () => {
               >
                 Login
               </Button>
+
               <span style={{ textAlign: "center", marginTop: "1rem" }}>
                 Not have an accout?{" "}
                 <a href="/signup" style={{ textDecoration: "none" }}>

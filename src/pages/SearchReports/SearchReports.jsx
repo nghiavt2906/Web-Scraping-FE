@@ -9,18 +9,23 @@ import {
 } from "react-bootstrap";
 
 import { axiosPrivate } from "../../config/axios";
+
+import Skeleton from "react-loading-skeleton";
+
 import KeywordsListGroup from "../../components/KeywordsListGroup/KeywordsListGroup";
 import EmptyState from "../../components/EmptyState/EmptyState";
 
 const SearchReports = () => {
   const [reports, setReports] = useState([]);
   const [searchText, setSearchText] = useState("");
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axiosPrivate.get("/reports/all");
         setReports(response.data);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -39,7 +44,7 @@ const SearchReports = () => {
       <InputGroup className="mb-3" style={{ width: "30rem" }}>
         <FormControl
           id="searchKeywords"
-          placeholder="Your keywords"
+          placeholder="Search your keywords"
           type="text"
           onChange={handleChange}
           value={searchText}
@@ -66,6 +71,12 @@ const SearchReports = () => {
                     />
                   </Accordion.Body>
                 </Accordion.Item>
+              ))}
+            </Accordion>
+          ) : isLoading ? (
+            <Accordion>
+              {[...Array(7).keys()].map((key) => (
+                <Skeleton key={key} width={"100%"} height={"3.4rem"} />
               ))}
             </Accordion>
           ) : (
