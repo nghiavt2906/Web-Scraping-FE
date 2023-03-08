@@ -48,8 +48,13 @@ const SearchReports = () => {
           type="text"
           onChange={handleChange}
           value={searchText}
+          data-testid="search-keywords-input"
         />
-        <Button onClick={handleClick} variant="danger">
+        <Button
+          onClick={handleClick}
+          variant="danger"
+          data-testid="clear-button"
+        >
           Clear
         </Button>
       </InputGroup>
@@ -60,7 +65,7 @@ const SearchReports = () => {
         </Card.Header>
         <Card.Body>
           {reports.length > 0 ? (
-            <Accordion>
+            <Accordion data-testid="display-reports">
               {reports.map((report) => (
                 <Accordion.Item key={report.id} eventKey={report.id}>
                   <Accordion.Header>{`${report.name}.csv`}</Accordion.Header>
@@ -74,7 +79,7 @@ const SearchReports = () => {
               ))}
             </Accordion>
           ) : isLoading ? (
-            <Accordion>
+            <Accordion data-testid={"loading-reports"}>
               {[...Array(7).keys()].map((key) => (
                 <Skeleton key={key} width={"100%"} height={"3.4rem"} />
               ))}

@@ -34,11 +34,11 @@ const SearchResultDetail = () => {
             Search result information
           </Card.Header>
           <Card.Body>
-            <h4>
+            <h4 data-testid="keyword">
               {searchResult ? searchResult.keyword : <Skeleton width={200} />}
             </h4>
 
-            <span style={{ display: "block" }}>
+            <span style={{ display: "block" }} data-testid="totalAds">
               <b>Total adwords advertisers: </b>
               {searchResult ? (
                 searchResult.totalAdwordsAdvertisers
@@ -47,12 +47,12 @@ const SearchResultDetail = () => {
               )}
             </span>
 
-            <span style={{ display: "block" }}>
+            <span style={{ display: "block" }} data-testid="totalLinks">
               <b>Total links: </b>{" "}
               {searchResult ? searchResult.totalLinks : <Skeleton width={50} />}
             </span>
 
-            <span style={{ display: "block" }}>
+            <span style={{ display: "block" }} data-testid="totalSearchResults">
               <b>Total search results: </b>{" "}
               {searchResult ? (
                 searchResult.totalSearchResults
@@ -61,7 +61,7 @@ const SearchResultDetail = () => {
               )}
             </span>
 
-            <span style={{ display: "block" }}>
+            <span style={{ display: "block" }} data-testid="htmlCode">
               <b>HTML Code: </b>
               {searchResult ? (
                 <textarea

@@ -36,7 +36,7 @@ const Login = () => {
       dispatch(loginRequest(data));
     } catch (err) {
       console.log(err);
-      setError(err.response.data);
+      if (err.response) setError(err.response.data);
     }
   };
 
@@ -61,7 +61,7 @@ const Login = () => {
             </Alert>
           ) : null}
           <Form onSubmit={handleSubmit}>
-            <Form.Group className="mb-3" controlId="formBasicEmail">
+            <Form.Group className="mb-3" controlId="formBasicUsername">
               <Form.Label>Username</Form.Label>
               <Form.Control
                 type="text"
