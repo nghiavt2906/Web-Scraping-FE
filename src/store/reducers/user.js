@@ -5,6 +5,7 @@ const INITIAL_STATE = {
   username: "",
   accessToken: "",
   submittedReport: null,
+  isProcessing: false,
 };
 
 const user = (state = INITIAL_STATE, action) => {
@@ -26,6 +27,11 @@ const user = (state = INITIAL_STATE, action) => {
       return {
         ...state,
         submittedReport: payload,
+      };
+    case types.TOGGLE_SUBMIT_BUTTON:
+      return {
+        ...state,
+        isProcessing: !state.isProcessing,
       };
     default:
       return state;

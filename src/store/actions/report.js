@@ -21,3 +21,5 @@ export const uploadFileRequest = (file) => async (dispatch) => {
   );
   dispatch({ type: types.FILE_SUBMIT_SUCCESS, payload: response.data });
 };
+
+export const toggleSubmitButton = () => ({ type: types.TOGGLE_SUBMIT_BUTTON });

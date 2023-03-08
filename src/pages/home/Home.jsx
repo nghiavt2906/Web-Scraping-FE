@@ -7,7 +7,10 @@ import { axiosPrivate } from "../../config/axios";
 import EmptyState from "../../components/EmptyState/EmptyState";
 import KeywordsListGroup from "../../components/KeywordsListGroup/KeywordsListGroup";
 
-import { uploadFileRequest } from "../../store/actions/report";
+import {
+  toggleSubmitButton,
+  uploadFileRequest,
+} from "../../store/actions/report";
 
 import toaster from "../../config/toaster";
 
@@ -17,7 +20,7 @@ import TOAST_TYPES from "../../constants/toast_types";
 const Home = () => {
   const dispatch = useDispatch();
 
-  const { submittedReport } = useSelector((state) => state.user);
+  const { submittedReport, isProcessing } = useSelector((state) => state.user);
 
   const [file, setFile] = useState();
   const [searchResults, setSearchResults] = useState([]);
@@ -25,6 +28,14 @@ const Home = () => {
   const successResults = searchResults.filter(
     (searchResult) => searchResult.status === SEARCH_STATUS.SUCCESS
   ).length;
+
+  if (
+    isProcessing &&
+    successResults > 0 &&
+    successResults === searchResults.length
+  ) {
+    dispatch(toggleSubmitButton());
+  }
 
   useEffect(() => {
     const updateInterval = setInterval(async () => {
@@ -62,6 +73,8 @@ const Home = () => {
       return;
     }
 
+    setSearchResults([]);
+    dispatch(toggleSubmitButton());
     dispatch(uploadFileRequest(file));
   };
 
@@ -88,7 +101,11 @@ const Home = () => {
                 alignItems: "flex-end",
               }}
             >
-              <Button className="btn btn-primary" type="submit">
+              <Button
+                className="btn btn-primary"
+                type="submit"
+                disabled={isProcessing}
+              >
                 Submit
               </Button>
             </div>

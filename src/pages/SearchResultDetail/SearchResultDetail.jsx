@@ -67,6 +67,7 @@ const SearchResultDetail = () => {
                 <textarea
                   className="html-text bg-dark"
                   value={searchResult.htmlCode}
+                  readOnly
                 />
               ) : (
                 <Skeleton className="html-text" />
