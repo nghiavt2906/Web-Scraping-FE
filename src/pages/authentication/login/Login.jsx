@@ -51,7 +51,7 @@ const Login = () => {
         className="text-dark"
       >
         <Card.Header style={{ textAlign: "center" }}>
-          <h4>Login</h4>
+          <h4 data-cy="login-title">Login</h4>
         </Card.Header>
         <Card.Body>
           {error.length > 0 ? (

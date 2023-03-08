@@ -37,10 +37,7 @@ const NavBar = () => {
             </LinkContainer>
           </Nav>
           <Nav>
-            <DropdownButton
-              id="dropdown-basic-button"
-              title={`Hi ${username}!`}
-            >
+            <DropdownButton id="dropdown-button" title={`Hi ${username}!`}>
               <Dropdown.Item href="#" onClick={handleLogout}>
                 Logout
               </Dropdown.Item>

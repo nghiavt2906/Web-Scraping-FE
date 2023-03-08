@@ -81,7 +81,7 @@ const Home = () => {
   return (
     <>
       <Container className="mt-3 px-3 py-3">
-        <h3>Upload</h3>
+        <h3 data-cy="home-title">Upload</h3>
 
         <Form className="my-3" onSubmit={handleSubmit}>
           <div className="row mb-1">
@@ -91,6 +91,7 @@ const Home = () => {
                 type="file"
                 onChange={handleChange}
                 data-testid="file-input"
+                data-cy="file-input"
               />
             </div>
 
@@ -106,6 +107,7 @@ const Home = () => {
                 className="btn btn-primary"
                 type="submit"
                 disabled={isProcessing}
+                data-cy="file-submit-btn"
               >
                 Submit
               </Button>

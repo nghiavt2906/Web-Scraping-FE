@@ -28,6 +28,7 @@ const KeywordsListGroup = ({ searchResults, searchText }) => {
         overflowY: "auto",
         maxHeight: "450px",
       }}
+      data-cy="processing-keywords-list"
     >
       {filteredSearchResults.map((searchResult) => (
         <ListGroup.Item

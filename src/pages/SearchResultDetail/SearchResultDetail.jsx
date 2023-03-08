@@ -41,7 +41,9 @@ const SearchResultDetail = () => {
             <span style={{ display: "block" }} data-testid="totalAds">
               <b>Total adwords advertisers: </b>
               {searchResult ? (
-                searchResult.totalAdwordsAdvertisers
+                <span data-cy="total-ads">
+                  {searchResult.totalAdwordsAdvertisers}
+                </span>
               ) : (
                 <Skeleton width={50} />
               )}
@@ -49,13 +51,19 @@ const SearchResultDetail = () => {
 
             <span style={{ display: "block" }} data-testid="totalLinks">
               <b>Total links: </b>{" "}
-              {searchResult ? searchResult.totalLinks : <Skeleton width={50} />}
+              {searchResult ? (
+                <span data-cy="total-links">{searchResult.totalLinks}</span>
+              ) : (
+                <Skeleton width={50} />
+              )}
             </span>
 
             <span style={{ display: "block" }} data-testid="totalSearchResults">
               <b>Total search results: </b>{" "}
               {searchResult ? (
-                searchResult.totalSearchResults
+                <span data-cy="total-search-results">
+                  {searchResult.totalSearchResults}
+                </span>
               ) : (
                 <Skeleton width={50} />
               )}
@@ -67,6 +75,7 @@ const SearchResultDetail = () => {
                 <textarea
                   className="html-text bg-dark"
                   value={searchResult.htmlCode}
+                  data-cy="html-code"
                   readOnly
                 />
               ) : (
