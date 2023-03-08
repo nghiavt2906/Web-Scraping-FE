@@ -90,6 +90,7 @@ const Home = () => {
                 className="form-control"
                 type="file"
                 onChange={handleChange}
+                data-testid="file-input"
               />
             </div>
 
