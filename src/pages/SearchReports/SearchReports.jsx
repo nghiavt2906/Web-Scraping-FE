@@ -67,7 +67,11 @@ const SearchReports = () => {
           {reports.length > 0 ? (
             <Accordion data-testid="display-reports">
               {reports.map((report) => (
-                <Accordion.Item key={report.id} eventKey={report.id}>
+                <Accordion.Item
+                  key={report.id}
+                  eventKey={report.id}
+                  data-cy={`report-${report.id}`}
+                >
                   <Accordion.Header>{`${report.name}.csv`}</Accordion.Header>
                   <Accordion.Body>
                     <KeywordsListGroup
