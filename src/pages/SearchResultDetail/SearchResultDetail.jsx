@@ -99,7 +99,7 @@ const SearchResultDetail = () => {
         <Modal.Header closeButton>
           <Modal.Title>HTML Content</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ overflow: "hidden" }}>
           <div
             style={{ maxWidth: "100%" }}
             dangerouslySetInnerHTML={{
