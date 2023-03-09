@@ -66,7 +66,7 @@ const SearchReports = () => {
                   <Accordion.Header>{`${report.name}.csv`}</Accordion.Header>
                   <Accordion.Body>
                     <KeywordsListGroup
-                      searchResults={report.keywords}
+                      searchResults={report.searchResults}
                       searchText={searchText}
                     />
                   </Accordion.Body>
