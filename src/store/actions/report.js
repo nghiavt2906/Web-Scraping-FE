@@ -17,9 +17,14 @@ export const uploadFileRequest = (file) => async (dispatch) => {
     {
       pending: "Uploading...",
       success: "File uploaded successfully!",
+      dispatch,
     }
   );
   dispatch({ type: types.FILE_SUBMIT_SUCCESS, payload: response.data });
 };
 
 export const toggleSubmitButton = () => ({ type: types.TOGGLE_SUBMIT_BUTTON });
+export const enableSubmitButton = () => ({ type: types.ENABLE_SUBMIT_BUTTON });
+export const disableSubmitButton = () => ({
+  type: types.DISABLE_SUBMIT_BUTTON,
+});
