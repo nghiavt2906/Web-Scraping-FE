@@ -8,7 +8,8 @@ import EmptyState from "../../components/EmptyState/EmptyState";
 import KeywordsListGroup from "../../components/KeywordsListGroup/KeywordsListGroup";
 
 import {
-  toggleSubmitButton,
+  disableSubmitButton,
+  enableSubmitButton,
   uploadFileRequest,
 } from "../../store/actions/report";
 
@@ -34,7 +35,7 @@ const Home = () => {
     successResults > 0 &&
     successResults === searchResults.length
   ) {
-    dispatch(toggleSubmitButton());
+    dispatch(enableSubmitButton());
   }
 
   useEffect(() => {
@@ -74,7 +75,7 @@ const Home = () => {
     }
 
     setSearchResults([]);
-    dispatch(toggleSubmitButton());
+    dispatch(disableSubmitButton());
     dispatch(uploadFileRequest(file));
   };
 

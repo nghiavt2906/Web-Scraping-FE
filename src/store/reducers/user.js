@@ -33,6 +33,16 @@ const user = (state = INITIAL_STATE, action) => {
         ...state,
         isProcessing: !state.isProcessing,
       };
+    case types.DISABLE_SUBMIT_BUTTON:
+      return {
+        ...state,
+        isProcessing: true,
+      };
+    case types.ENABLE_SUBMIT_BUTTON:
+      return {
+        ...state,
+        isProcessing: false,
+      };
     default:
       return state;
   }
