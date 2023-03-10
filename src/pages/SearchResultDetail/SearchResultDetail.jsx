@@ -97,15 +97,13 @@ const SearchResultDetail = () => {
 
       <Modal show={showModal} onHide={handleCloseModal} size="xl">
         <Modal.Header closeButton>
-          <Modal.Title>HTML Content</Modal.Title>
+          <Modal.Title className="text-dark">HTML Content</Modal.Title>
         </Modal.Header>
-        <Modal.Body style={{ overflow: "hidden" }}>
-          <div
-            style={{ maxWidth: "100%" }}
-            dangerouslySetInnerHTML={{
-              __html: searchResult ? searchResult.htmlCode : "",
-            }}
-          />
+        <Modal.Body>
+          <iframe
+            style={{ width: "100%", height: "70vh" }}
+            srcdoc={searchResult ? searchResult.htmlCode : ""}
+          ></iframe>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={handleCloseModal}>
