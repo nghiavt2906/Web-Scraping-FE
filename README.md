@@ -22,7 +22,7 @@ npm install
 - Next, add the `.env` file to root folder with the following keys:
 
 ```shell
-VITE_SERVER_END_POINT=/*endpoint of hostname to the backend server*/
+VITE_SERVER_END_POINT=/*endpoint or hostname to the backend server*/
 ```
 
 **Run the application**
