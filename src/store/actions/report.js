@@ -17,7 +17,7 @@ export const uploadFileRequest = (file) => async (dispatch) => {
     {
       pending: "Uploading...",
       success: "File uploaded successfully!",
-      dispatch,
+      errorHandler: () => dispatch(enableSubmitButton()),
     }
   );
   dispatch({ type: types.FILE_SUBMIT_SUCCESS, payload: response.data });

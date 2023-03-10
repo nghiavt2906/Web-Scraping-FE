@@ -1,7 +1,6 @@
 import { toast } from "react-toastify";
 
 import TOAST_TYPES from "../constants/toast_types";
-import { enableSubmitButton } from "../store/actions/report";
 
 const defaultOptions = {
   position: "top-right",
@@ -35,7 +34,7 @@ const toaster = {
       pending = "Please wait...",
       success = "Done",
       error = "Something went wrong",
-      dispatch,
+      errorHandler = () => {},
     }
   ) => {
     return await toast.promise(
@@ -49,7 +48,7 @@ const toaster = {
         },
         error: {
           render({ data }) {
-            dispatch(enableSubmitButton());
+            errorHandler();
             return data.response.data ? data.response.data : error;
           },
         },
